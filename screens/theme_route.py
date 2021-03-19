@@ -21,10 +21,12 @@ class ThemeLayout(BoxLayout):
         self.secondary_text_color = theme_dict['text_secondary_color']
         self.theme_background_color = theme_dict['background_color']
 
-        self.ids.primary_color_label_button.background_color = self.primary_color
+        self.ids.primary_color_label_button.background_color = \
+            self.primary_color
         self.ids.primary_color_label_button.color = self.primary_text_color
         self.ids.primary_color_label_button.text = theme_name
-        self.ids.space_filling_label_button.background_color = self.theme_background_color
+        self.ids.space_filling_label_button.background_color = \
+            self.theme_background_color
         self.ids.choice_checkbox.background_color = self.theme_background_color
         self.ids.choice_checkbox.color = (0, 1, 0, 1)
 

@@ -12,18 +12,18 @@
     "good_color": "#409250",
     "bad_color": "#ca4540"
   },
-    "dark": {
-    "primary_color": "#222831",
+  "dark": {
+    "primary_color": "#282828",
     "primary_variant_color": "#393e46",
-    "secondary_color": "#808080",
-    "background_color": "#000000",
-    "divider_color": "#e0e0e0",
-    "text_primary_color": "#ffffff",
+    "secondary_color": "#505050",
+    "background_color": "#1f1f1f",
+    "divider_color": "#363636",
+    "text_primary_color": "#c3c3c3",
     "text_primary_variant_color": "#ffffff",
-    "text_secondary_color": "#ffffff",
-    "text_background_color": "#ffffff",
-    "good_color": "#409250",
-    "bad_color": "#ca4540"
+    "text_secondary_color": "#cdcdcd",
+    "text_background_color": "#b8b8b8",
+    "good_color": "#457045",
+    "bad_color": "#da7168"
   },
   "neutral": {
     "primary_color": "#d3d9ce",
