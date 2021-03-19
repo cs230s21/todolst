@@ -2,11 +2,16 @@ import datetime
 from dateutil import parser
 
 from kivy.uix.screenmanager import Screen
+from libs.custom_kv_widget import ErrorPopup
 
 
 # Custom Exception used to catch errors in add_task_to_upcoming().
 class AddTaskError(Exception):
-    pass
+    def __init__(self, message):
+        if type(message) is str:
+            self.message = str(message)
+        else:
+            self.message = 'Invalid deadline'
 
 
 def _create_due_time(datetime_rep):
@@ -21,8 +26,10 @@ def _create_due_time(datetime_rep):
     datetime_rep = datetime_rep.lower()
     datetime_lst = datetime_rep.split()
 
-    if len(datetime_lst) == 1:
+    if len(datetime_lst) < 3 and ':' not in datetime_rep:
         datetime_lst.append('23:59')
+    elif len(datetime_lst) == 1 and ':' in datetime_rep:
+        datetime_lst.insert(0, 'tdy')
 
     for i in range(len(datetime_lst)):
 
@@ -53,29 +60,41 @@ class AddTaskRoute(Screen):
         super().__init__(**kwargs)
         self.app = app
 
-    def add_task_to_upcoming(self):
+    def add_task_to_upcoming(self, button_instance):
         """
         turns the task information the user inputs into a dictionary
         that can be transferred back and displayed on UpcomingRoute.
 
         :return: The task in dictionary form, task_as_dict
         """
-        if not self.ids.subject.text and self.ids.time.text:
-            error = 'Missing task description'
-            raise AddTaskError(error)
-        elif not self.ids.subject.text and not self.ids.time.text:
-            return
 
-        self.app.user_data["largest_id"] += 1
+        try:
+            if not self.ids.subject.text and self.ids.time.text:
+                error = 'Missing task description'
+                raise AddTaskError(error)
+            elif not self.ids.subject.text and not self.ids.time.text:
+                self.go_to_upcoming(button_instance)
+                return
 
-        new_task = {
-            "id": self.app.user_data["largest_id"],
-            "subject": self.ids.subject.text,
-            "time": _create_due_time(self.ids.time.text),
-            "priority": "none"
-        }
+            self.app.user_data["largest_id"] += 1
 
-        self.ids.subject.subject = ''
-        self.ids.subject.text = ''
+            new_task = {
+                "id": self.app.user_data["largest_id"],
+                "subject": self.ids.subject.text,
+                "time": _create_due_time(self.ids.time.text),
+                "priority": "none"
+            }
 
-        self.app.process_task_handler('upcoming', new_task)
+            self.ids.subject.text = ''
+            self.ids.time.text = ''
+
+            self.app.process_task_handler('upcoming', new_task)
+            self.go_to_upcoming(button_instance)
+
+        except AddTaskError as error:
+            ErrorPopup(error.message).open()
+
+    def go_to_upcoming(self, button_instance):
+        if button_instance is self.ids.add_leave_btn:
+            self.app.route_manager.current = "upcoming_route"
+            self.app.route_manager.transition.direction = "down"

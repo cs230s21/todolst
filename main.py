@@ -24,6 +24,7 @@ kivysome.enable("https://kit.fontawesome.com/4adb19bb6e.js",
 Builder.load_file('libs/custom_kv_widget.kv')
 Builder.load_file('screens/upcoming_route.kv')
 Builder.load_file('screens/add_task_route.kv')
+# Builder.load_file('screens/add_task_route2.kv')
 Builder.load_file('screens/completed_route.kv')
 Builder.load_file('screens/theme_route.kv')
 

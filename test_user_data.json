@@ -12,14 +12,6 @@
         }
       ]
     },
-    "2021-03-15": [
-      {
-        "id": 2,
-        "subject": "cs230 hw3",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ],
     "2021-03-16": [
       {
         "id": 3,
@@ -42,20 +34,6 @@
         "priority": "none"
       }
     ],
-    "2021-03-18": [
-      {
-        "id": 9,
-        "subject": "cs230 hw10",
-        "time": "2:59",
-        "priority": "none"
-      },
-      {
-        "id": 11,
-        "subject": "cs230 hw12",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ],
     "2021-03-20": [
       {
         "id": 13,
@@ -66,20 +44,6 @@
       {
         "id": 14,
         "subject": "cs230 hw15",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ],
-    "2021-03-21": [
-      {
-        "id": 15,
-        "subject": "cs230 hw16",
-        "time": "23:59",
-        "priority": "none"
-      },
-      {
-        "id": 17,
-        "subject": "cs230 hw18",
         "time": "23:59",
         "priority": "none"
       }
@@ -115,13 +79,6 @@
       "time": "2021-03-18 23:59",
       "priority": "none",
       "completed_time": "2021-03-18 13:20"
-    },
-    {
-      "id": 12,
-      "subject": "cs230 hw13",
-      "time": "2021-03-20 23:59",
-      "priority": "none",
-      "completed_time": "2021-03-18 10:30"
     }
   ]
 }

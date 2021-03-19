@@ -1,36 +1,76 @@
 <AddTaskRoute>:
     name: "add_task_route"
 
-    GridLayout:
-        cols:1
+    AnchorLayout:
+        canvas.before:
+            Color:
+                rgba: app.theme_palette['primary_color']
+            Triangle:
+                points: [0, self.size[1], self.size[1], 0, self.size[1], self.size[1]]
 
-        TextInput:
-            id: subject
-            multiline: True
-            hint_text: 'Add task description'
+            Color:
+                rgba: app.theme_palette['primary_variant_color']
+            Triangle:
+                points: [self.size[1], 0, 0, self.size[1], 0, 0]
 
-        TextInput:
-            id: time
-            multiline: True
-            hint_text: 'Add task due date'
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 0.8, None
+            height: self.minimum_height
+            spacing: dp(12)
+            padding: [self.size[0] * 0.05, dp(24)]
 
-        Label:
-            text: "Is this task of high priority? Switch to 'ON' if so."
+            canvas.before:
+                Color:
+                    rgba: app.theme_palette['background_color']
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
 
-        Switch:
-            id: priority
-            active: False
+            AddTaskTitle:
+                markup: True
+                text: 'Todolst\n[size=20sp]Add task to track...[/size]'
 
-        GridLayout:
-            cols: 2
 
-            Button:
-                text: "Register Task"
-                on_press: root.add_task_to_upcoming()
+            InputLayout:
+                IconButton:
+                    text: '%s' % icon('tasks')
 
-            Button:
-                text: "Go Back"
-                on_release:
-                    root.add_task_to_upcoming()
-                    app.root.current = "upcoming_route"
-                    root.manager.transition.direction = "down"
+                ResizableTextInput:
+                    id: subject
+                    hint_text: "Task's description"
+
+            InputLayout:
+                IconButton:
+                    text: '%s' % icon('clock')
+
+                ResizableTextInput:
+                    id: time
+                    multiline: False
+                    hint_text: "Task's deadline"
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, None
+                height: self.minimum_height
+
+                RoundedConnerButton:
+                    text: "%s" % icon('flag')
+                    button_color: app.theme_palette['divider_color']
+                    on_release: pass
+
+                RoundedConnerButton:
+                    id: add_btn
+                    text: "%s" % icon('plus')
+                    color: app.theme_palette['text_secondary_color']
+                    button_color: app.theme_palette['secondary_color']
+                    on_press: root.add_task_to_upcoming(self)
+
+            RoundedConnerButton:
+                id: add_leave_btn
+                height: dp(40)
+                text: "%s" % icon('paper-plane')
+                color: app.theme_palette['text_primary_color']
+                button_color: app.theme_palette['primary_color']
+                on_release: root.add_task_to_upcoming(self)
+
