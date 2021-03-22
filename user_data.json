@@ -1,84 +1,8 @@
 {
   "theme_name": "todolst",
-  "largest_id": 24,
+  "largest_id": 0,
   "upcoming": {
-    "overdue": {
-      "2021-03-15": [
-        {
-          "id": 0,
-          "subject": "cs230 hw1",
-          "time": "23:59",
-          "priority": "none"
-        }
-      ]
-    },
-    "2021-03-16": [
-      {
-        "id": 3,
-        "subject": "cs230 hw4",
-        "time": "2:59",
-        "priority": "none"
-      },
-      {
-        "id": 5,
-        "subject": "cs230 hw6",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ],
-    "2021-03-19": [
-      {
-        "id": 6,
-        "subject": "cs230 hw7",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ],
-    "2021-03-20": [
-      {
-        "id": 13,
-        "subject": "cs230 hw14",
-        "time": "23:59",
-        "priority": "none"
-      },
-      {
-        "id": 14,
-        "subject": "cs230 hw15",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ],
-    "2021-03-22": [
-      {
-        "id": 18,
-        "subject": "cs230 hw19",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ],
-    "2021-03-24": [
-      {
-        "id": 21,
-        "subject": "cs230 hw22",
-        "time": "23:59",
-        "priority": "none"
-      }
-    ]
+    "overdue": {}
   },
-  "completed": [
-    {
-      "id": 1,
-      "subject": "cs230 hw2",
-      "time": "2021-03-18 23:59",
-      "priority": "none",
-      "completed_time": "2021-03-15 10:59"
-    },
-    {
-      "id": 10,
-      "subject": "cs230 hw11",
-      "time": "2021-03-18 23:59",
-      "priority": "none",
-      "completed_time": "2021-03-18 13:20"
-    }
-  ]
+  "completed": []
 }
