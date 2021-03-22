@@ -8,6 +8,10 @@ from libs.custom_kv_widget import ErrorPopup
 # Custom Exception used to catch errors in add_task_to_upcoming().
 class AddTaskError(Exception):
     def __init__(self, message):
+        """
+        function extract and create error message to be display
+        :param message: error message as string or error object
+        """
         if type(message) is str:
             self.message = str(message)
         else:
@@ -16,7 +20,20 @@ class AddTaskError(Exception):
 
 def _create_due_time(datetime_rep):
     """
-    create and format to a valid string represent due datetime
+    - turns the user-inputted datetime into a valid string represent due
+    datetime
+    - the function raise AddTaskError if datetime object represent due
+    time cannot be create or when the due date time is smaller than current
+    time i.e. already past.
+    - the function has some input validation but also allow the user to have
+    wide range of input format i.e. all common known date time format along
+    with some abbreviation.
+    eg: 'tdy', '2day', '2de', '2da', '2d', 'today' for today
+    eg2: 'tomw', 'tmw', 'tmr', '2moro', 'tomorrow' for tomorrow
+    - the function add the time 23:59 as due time if the user only specified
+    due date
+    - the function assume due date is current date i.e. today if the user only
+    provide due time
     :pram datetime_rep: string representation of a datetime
     :return: string represent datetime in form Year-month-date Hour:Minute
     """
@@ -57,17 +74,22 @@ def _create_due_time(datetime_rep):
 
 class AddTaskRoute(Screen):
     def __init__(self, app, **kwargs):
+        """
+        :param app: current app instance
+        """
         super().__init__(**kwargs)
         self.app = app
 
     def add_task_to_upcoming(self, button_instance):
         """
-        turns the task information the user inputs into a dictionary
-        that can be transferred back and displayed on UpcomingRoute.
-
+        turns the task information the user inputs into a dictionary that can
+        be transferred back and displayed on UpcomingRoute. function raise
+        open popup if the task description missing or AddTaskError raised due
+        to unable to create datetime object represent due time
+        :param button_instance: button object indicate which button is being
+        press
         :return: The task in dictionary form, task_as_dict
         """
-
         try:
             if not self.ids.subject.text and self.ids.time.text:
                 error = 'Missing task description'
@@ -95,6 +117,13 @@ class AddTaskRoute(Screen):
             ErrorPopup(error.message).open()
 
     def go_to_upcoming(self, button_instance):
+        """
+        function call to transition from AddTaskRoute back to UpcomingRoute.
+        function will not allow transition to take place if a popup show up or
+        when the button is adding and stay not adding and leave
+        :param button_instance: button object to check which button (add button
+        or paper plane button) being press
+        """
         if button_instance is self.ids.add_leave_btn:
             self.app.route_manager.current = "upcoming_route"
             self.app.route_manager.transition.direction = "down"

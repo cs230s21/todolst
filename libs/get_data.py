@@ -2,8 +2,8 @@ import json
 import datetime
 
 
-# date = '%Y-%m-%d'
-# data_time = '%Y-%m-%d %H:%M'
+# date_format = '%Y-%m-%d'
+# data_time_format = '%Y-%m-%d %H:%M'
 
 def _hex_to_rgb(hex_color):
     """
@@ -24,7 +24,7 @@ def _hex_to_rgb(hex_color):
 
 def get_theme_palette(theme_name):
     """
-    get color data about the <theme_name>
+    get color data of the theme_name
     :param theme_name: name of the theme - todolst, dark, neutral
     :return: color palette for the theme
     """
@@ -54,7 +54,7 @@ def get_theme_palette(theme_name):
 def add_item_to_dict(dict_obj, key, value):
     """
     add an item to a list inside a dict or create a list contain this item in
-    the with it's associate date key in dict
+    the dict with it's associate date key in dict
     -> in dict_obj -- key: [value]
     :param dict_obj: dictionary will hold this list
     :param key: key for the list
@@ -77,9 +77,10 @@ def add_item_to_dict(dict_obj, key, value):
 
 def get_upcoming_tasks(upcoming_data):
     """
-    format upcoming_data to time object and put in to 2 categories overdue
-    and on_time
-    :return: dict of overdue and on_time dict upcoming tasks
+    extract upcoming tasks in upcoming_data and format to dict object where key
+    is due date and value is list of tasks on that day then put those task dict
+    in to 2 categories overdue and on_time
+    :return: dict of overdue and on_time dict of upcoming tasks
     """
 
     upcoming_tasks = {'overdue': {}, 'on_time': {}}
@@ -132,7 +133,7 @@ def get_upcoming_tasks(upcoming_data):
 def get_next7dates():
     """
     get date for the next 7 days
-    :return: list of next 7 datetime object
+    :return: list of 7 datetime object represent next 7 days
     """
     return [datetime.date.today() + datetime.timedelta(days=i) for i in
             range(8)]
@@ -140,7 +141,8 @@ def get_next7dates():
 
 def get_completed_tasks(completed_data):
     """
-    get completed task within 24h and format to datetime object
+    get completed task within 24h from completed_data and format all
+    completed_time to datetime object
     :return: list of completed tasks within 24 hours
     """
 
